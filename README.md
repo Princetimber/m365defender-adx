@@ -33,6 +33,7 @@ Before we can run the script we need to meet a couple of prerequisites:
 * Create an App Registration which is used to query the Microsoft Graph API to collect the schema of each of the tables in Defender. This Application needs ThreatHunting.ReadAll permissions for Microsoft.Graph. Make sure to grant admin consent and assign a secret with a very short lifespan, we'll only need to do this once. (more on this below)
 * The Azure Subscription requires two resource provides to be registered: Microsoft.EventHub and Microsoft.Kusto. The script will check the status of these, but will not enable them for you.
 * The user running DefenderArchiveR.ps1 need to have either Owner or Contributor and UserAccess Administrator role(s) on the Azure subscription. This is needed to deploy the Azure resources, but also to make sure the ADX system-assigned Managed Identity has the required permissions on the Event Hub(s).
+* This script need to be executed in PowerShell 7 and you need the Az.Resources PowerShell Module
 
 ### Parameters
 
