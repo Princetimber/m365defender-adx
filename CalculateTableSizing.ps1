@@ -19,7 +19,7 @@ $tableMBThroughputQuery = @'
     | project strcat("<TABLE>", " | ", TimeFilter, " | project totalLengthBytes = ", CalculateStringLengths, " | summarize totalThroughputGB = sum(totalLengthBytes) / (1024 * 1024) * 2")
 '@
 
-function Query-AdvancedHuntingAPI {
+function Request-AdvancedHuntingAPI {
     param (
         $url,
         $headers,
@@ -80,12 +80,12 @@ foreach ($table in $m365defenderSupportedTables) {
     # Construct KQL query to retrieve total daily throughput (MB) for table
     Write-Host "    ◑ Constructing KQL query to retrieve total daily throughput (MB)..." -ForegroundColor DarkGray
     $bodyMBQuery    = ConvertTo-Json -InputObject @{ 'Query' = $tableMBThroughputQuery.Replace("<TABLE>", $table) }
-    $resultsMBQuery = Query-AdvancedHuntingAPI -url $url -headers $headers -body $bodyMBQuery
+    $resultsMBQuery = Request-AdvancedHuntingAPI -url $url -headers $headers -body $bodyMBQuery
     
     # Use KQL query from result above to retrieve total daily throughput (MB) for table
     Write-Host "    ◕ Calculating total daily throughput (MB)..." -ForegroundColor DarkGray
     $bodyMBpd       = ConvertTo-Json -InputObject @{ 'Query' = ($resultsMBQuery | Select-Object -ExpandProperty Column1) }
-    $resultsMBpd    = Query-AdvancedHuntingAPI -url $url -headers $headers -body $bodyMBpd | Select-Object -ExpandProperty totalThroughputGB
+    $resultsMBpd    = Request-AdvancedHuntingAPI -url $url -headers $headers -body $bodyMBpd | Select-Object -ExpandProperty totalThroughputGB
     
     # Calculate Event Hub throughput units (TPUs) required for table
     $RequiredTPUs   = [Math]::Round($resultsMBpd / 86400)         # One throughput unit is 1 MB per second (Megabytes per day --> Megabytes per second --> Megabytes per 86400 seconds)
@@ -100,4 +100,4 @@ foreach ($table in $m365defenderSupportedTables) {
     $allTablesThroughput    += $tableThroughput
 }
 
-$allTablesThroughput | ConvertTo-Json | Out-File $tableStatisticsFiles
+$allTablesThroughput | ConvertTo-Json | Out-File $tableStatisticsFile
