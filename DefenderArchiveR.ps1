@@ -78,37 +78,20 @@ param (
 
 )
 
-# ### ADX details
-# $eventHubNamespaceNamePrefix    = "eh-m365d-archive"        # Max 6-50 alphanumerics and hyphens and must start with letter. Must be unique across Azure.
-# $adxClusterName                 = "adx-m365d-archive-01"    # Max 22 lowercase letters, numbers and/or hyphens and must start with letter. Must be unique across Azure.
-# $adxDatabaseName                = "m365d-archive"
-# $adxDatabasePermissionsRole     = "viewers"
-# $adxDatabasePermissionsTenant   = "bitdefend.eu"
-# $adxDatabasePermissionsGroup    = "Bitdefend Admins"
-# $adxTableRetention              = "365d"
-# $adxTableRawRetention           = "1d"
-# $adxScript                      = ""
-
-# $sentinelWorkspaceName          = "la-sentinel-01"
-# $sentinelWorkspaceResourceGroup = "rg-sentinel-01"
-$location                       = "westeurope"
-
 ### ADX details
-
-$eventHubNamespaceNamePrefix    = "eh-securityarchive-prd-weeu" # number-suffix will be added during deployment
-$adxClusterName                 = "adx-m365darchive-prd01"      # Cannot exceed 22 characters!
+$eventHubNamespaceNamePrefix    = "eh-m365d-archive"        # Max 6-50 alphanumerics and hyphens and must start with letter. Must be unique across Azure.
+$adxClusterName                 = "adx-m365d-archive-01"    # Max 22 lowercase letters, numbers and/or hyphens and must start with letter. Must be unique across Azure.
 $adxDatabaseName                = "m365d-archive"
 $adxDatabasePermissionsRole     = "viewers"
-$adxDatabasePermissionsTenant   = "AholdDelhaize.com"
-$adxDatabasePermissionsGroup    = "cld-aleu-gsotech-sub-read-prd-isosecurity-01"
+$adxDatabasePermissionsTenant   = "bitdefend.eu"
+$adxDatabasePermissionsGroup    = "Bitdefend Admins"
 $adxTableRetention              = "365d"
 $adxTableRawRetention           = "1d"
 $adxScript                      = ""
 
-$sentinelWorkspaceName          = "sentinel-prd-weu-01"
-$sentinelWorkspaceResourceGroup = "rg-sentinel-prd-weeu-01" 
-
-
+$sentinelWorkspaceName          = "la-sentinel-01"
+$sentinelWorkspaceResourceGroup = "rg-sentinel-01"
+$location                       = "westeurope"
 
 ### M365Defender details
 $schemaQuery                    = " | getschema | project ColumnName, ColumnType"
