@@ -96,17 +96,17 @@ $location                       = "westeurope"
 ### M365Defender details
 $schemaQuery                    = " | getschema | project ColumnName, ColumnType"
 
-$tablesCalculateMaxEPS                      = @'
-let m365defenderTables = datatable (tableName:string)[  
-    <TABLES>
-];
-union withsource=MDETables*
-| where Timestamp between (startofday(ago(8d)) .. endofday(ago(1d)))    // Look back at last 7 full days
-| where MDETables in (m365defenderTables)                               // Only look at tables we want to archive
-| summarize EventsPerMin = count() by bin(Timestamp, 1m), MDETables     // Count events per minute per table
-| summarize MaxEventsPerMin = arg_max(EventsPerMin, *) by MDETables     // Find max events per minute per table
-| project MDETable = MDETables, round(tolong(MaxEventsPerMin),2)        // Round to 2 decimals
-| extend TPU = MaxEventsPerMin / 60 / 1000
+$tablesCalculateMaxEPS          = @'
+                                    let m365defenderTables = datatable (tableName:string)[  
+                                        <TABLES>
+                                    ];
+                                    union withsource=MDETables*
+                                    | where Timestamp between (startofday(ago(8d)) .. endofday(ago(1d)))    // Look back at last 7 full days
+                                    | where MDETables in (m365defenderTables)                               // Only look at tables we want to archive
+                                    | summarize EventsPerMin = count() by bin(Timestamp, 1m), MDETables     // Count events per minute per table
+                                    | summarize MaxEventsPerMin = arg_max(EventsPerMin, *) by MDETables     // Find max events per minute per table
+                                    | project MDETable = MDETables, round(tolong(MaxEventsPerMin),2)        // Round to 2 decimals
+                                    | extend TPU = MaxEventsPerMin / 60 / 1000
 '@
 
 # Function defined to repeatedly query Defender Advanced Hunting API
