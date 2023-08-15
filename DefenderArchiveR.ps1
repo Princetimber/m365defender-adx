@@ -661,10 +661,10 @@ if ($deploySentinelFunctions) {
                 -adxClusterName $adxClusterName `
                 -adxDatabaseName $adxDatabaseName
             If ($deployment.ProvisioningState -eq "Succeeded") {
-                Write-Host "                 ✓ Deployment of savedSearches in workspace '$($sentinelWorkspaceName)' was successful" -ForegroundColor DarkGreen
+                Write-Host "                  ✓ Deployment of savedSearches in workspace '$($sentinelWorkspaceName)' was successful" -ForegroundColor DarkGreen
                 Write-Host ""
             } else {
-                Write-Host "                 ! There was an issue deploying to '$($sentinelWorkspaceName)' please check deployment '$($deployment.DeploymentName)'!" -ForegroundColor Yellow
+                Write-Host "                  ! There was an issue deploying to '$($sentinelWorkspaceName)' please check deployment '$($deployment.DeploymentName)'!" -ForegroundColor Yellow
             }
         } catch {
             Write-Host ""
