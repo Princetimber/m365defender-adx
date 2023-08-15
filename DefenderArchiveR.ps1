@@ -75,6 +75,9 @@ param (
 
 )
 
+$ErrorActionPreference = "Stop" # Stop on all errors
+Set-StrictMode -Version Latest  # Stop on uninitialized variables
+
 ### ADX details
 $eventHubNamespaceNamePrefix    = "eh-m365d-archive"        # Max 6-50 alphanumerics and hyphens and must start with letter. Must be unique across Azure.
 $adxClusterName                 = "adx-m365d-archive-01"    # Max 22 lowercase letters, numbers and/or hyphens and must start with letter. Must be unique across Azure.

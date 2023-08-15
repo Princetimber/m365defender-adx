@@ -1,11 +1,33 @@
-$tenantId       = ''
-$appId          = ''
-$appSecret      = ''
+[CmdletBinding()]
+param (
+
+    [Parameter (Mandatory = $true)]
+    [string] $tenantId,
+
+    [Parameter (Mandatory = $true)]
+    [string] $appId,
+
+    [Parameter (Mandatory = $true)]
+    [string] $appSecret
+
+)
+
+$ErrorActionPreference = "Stop" # Stop on all errors
+Set-StrictMode -Version Latest  # Stop on uninitialized variables
 
 $m365defenderSupportedTables = @(
-    "IdentityQueryEvents",
-    "IdentityDirectoryEvents",
-    "CloudAppEvents"
+    "DeviceInfo",
+    "DeviceNetworkInfo",
+    "DeviceProcessEvents",
+    "DeviceNetworkEvents",
+    "DeviceFileEvents",
+    "DeviceRegistryEvents",
+    "DeviceLogonEvents",
+    "DeviceEvents",
+    "DeviceFileCertificateInfo",
+    "EmailAttachmentInfo",
+    "EmailEvents",
+    "EmailUrlInfo"
 )
 
 $tableStatisticsFile = "tableStatistics.json"
@@ -36,6 +58,7 @@ function Request-AdvancedHuntingAPI {
     while ($retryCount -lt $maxRetries) {
         try {
             (Invoke-WebRequest -Method Post -Uri $url -Headers $headers -Body $body -ErrorAction Stop | ConvertFrom-Json).Results
+            $retryCount = $maxRetries
         } catch {
             $errorObject = (ConvertFrom-Json $_.ErrorDetails)
             Write-Host "        Request failed, retrying..." -ForegroundColor DarkYellow
