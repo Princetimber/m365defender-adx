@@ -65,9 +65,6 @@ param (
     [string] $useAdxScript,
 
     [Parameter (Mandatory = $false)]
-    [string] $useTableStatistics,
-
-    [Parameter (Mandatory = $false)]
     [switch] $skipPreReqChecks,
 
     [Parameter (Mandatory = $false)]
