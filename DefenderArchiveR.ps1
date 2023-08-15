@@ -429,7 +429,71 @@ Write-Host "           ┖─ Retrieving table statistics to determine optimal E
 Write-Host "                    ◕ Calculating the numbers of events per second (EPS)..." -ForegroundColor DarkGray
 
 $body                       = ConvertTo-Json -InputObject @{ 'Query' = $tablesCalculateMaxEPS.Replace("<TABLES>", $archiveTablesString) }
-$allTablesMaxEPS            = Query-AdvancedHuntingAPI -url $url -headers $headers -body $body
+# $allTablesMaxEPS            = Query-AdvancedHuntingAPI -url $url -headers $headers -body $body
+
+# Temporary bypas for ExpertsLive Europe demo
+$allTablesMaxEPS = @(
+    [pscustomobject]@{
+        MDETable = "DeviceNetworkInfo"
+        MaxEventsPerMin = 4
+        TPU = 6.66666666666667E-05
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceInfo"
+        MaxEventsPerMin = 3
+        TPU = 5E-05
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceRegistryEvents"
+        MaxEventsPerMin = 154
+        TPU = 0.00256666666666667
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceLogonEvents"
+        MaxEventsPerMin = 21
+        TPU = 0.00035
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceFileCertificateInfo"
+        MaxEventsPerMin = 92
+        TPU = 0.00153333333333333
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceFileEvents"
+        MaxEventsPerMin = 5375
+        TPU = 0.0895833333333333
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceNetworkEvents"
+        MaxEventsPerMin = 55
+        TPU = 0.000916666666666667
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceProcessEvent"
+        MaxEventsPerMin = 3038
+        TPU = 0.0506333333333333
+    },
+    [pscustomobject]@{
+        MDETable = "DeviceEvents"
+        MaxEventsPerMin = 4125
+        TPU = 0.06875
+    },
+    [pscustomobject]@{
+        MDETable = "EmailUrlInfo"
+        MaxEventsPerMin = 41
+        TPU = 0.000683333333333333
+    },
+    [pscustomobject]@{
+        MDETable = "EmailEvents"
+        MaxEventsPerMin = 2
+        TPU = 3.33333333333333E-05
+    },
+    [pscustomobject]@{
+        MDETable = "EmailAttachmentInfo"
+        MaxEventsPerMin = 2
+        TPU = 3.33333333333333E-05
+    }
+)
 
 Write-Host "               ┖─ Checking the amount of Event Hub Namespaces needed..." -ForegroundColor Gray
 
