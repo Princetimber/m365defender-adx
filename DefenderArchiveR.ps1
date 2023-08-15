@@ -469,7 +469,7 @@ $allTablesMaxEPS = @(
         TPU = 0.000916666666666667
     },
     [pscustomobject]@{
-        MDETable = "DeviceProcessEvent"
+        MDETable = "DeviceProcessEvents"
         MaxEventsPerMin = 3038
         TPU = 0.0506333333333333
     },
@@ -586,7 +586,7 @@ For ($count = 1; $count -le $eventHubNamespacesCount; $count++) {
                 Write-Host ""
                 foreach ($eventHub in $eventHubNames) { Write-Host "                                 - $($eventHub.Substring(30))" -ForegroundColor Magenta }
                 Write-Host ""
-                Write-Host "                             $($deployment.outputs.eventHubNamespaceResourceId.value)" -ForegroundColor Magenta
+                Write-Host "             $($deployment.outputs.eventHubNamespaceResourceId.value)" -ForegroundColor Magenta
                 Write-Host "                                  ˆ-- Use this resource ID and these table names for setting up Streaming API in Microsoft 365 Defender." -ForegroundColor Yellow
             } else {
                 Write-Host "                      ! There was an issue deploying '$($eventHubNamespaceName)' please check deployment '$($deployment.DeploymentName)'!" -ForegroundColor Yellow
