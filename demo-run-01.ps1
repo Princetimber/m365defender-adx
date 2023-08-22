@@ -1,4 +1,4 @@
-$appSecret = 
+$appSecret = "q2-8Q~NuuleAJvHMBEdOMlMfW9fK9dcBgFS0ma_0"
 
 
 
