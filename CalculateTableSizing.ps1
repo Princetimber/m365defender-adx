@@ -17,15 +17,7 @@ Set-StrictMode -Version Latest  # Stop on uninitialized variables
 
 $m365defenderSupportedTables = @(
     "DeviceInfo",
-    "DeviceNetworkInfo",
-    "DeviceProcessEvents",
-    "DeviceNetworkEvents",
     "DeviceFileEvents",
-    "DeviceRegistryEvents",
-    "DeviceLogonEvents",
-    "DeviceEvents",
-    "DeviceFileCertificateInfo",
-    "EmailAttachmentInfo",
     "EmailEvents",
     "EmailUrlInfo"
 )
