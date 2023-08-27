@@ -1,0 +1,117 @@
+[
+  {
+    "tableName": "AlertInfo",
+    "RequiredTPUs": 0.0,
+    "MBpd": 0
+  },
+  {
+    "tableName": "AlertEvidence",
+    "RequiredTPUs": 0.0,
+    "MBpd": 324
+  },
+  {
+    "tableName": "DeviceInfo",
+    "RequiredTPUs": 0.0,
+    "MBpd": 1976
+  },
+  {
+    "tableName": "DeviceNetworkInfo",
+    "RequiredTPUs": 0.0,
+    "MBpd": 7420
+  },
+  {
+    "tableName": "DeviceProcessEvents",
+    "RequiredTPUs": 3.0,
+    "MBpd": 287652
+  },
+  {
+    "tableName": "DeviceEvents",
+    "RequiredTPUs": 3.0,
+    "MBpd": 287650
+  },
+  {
+    "tableName": "DeviceProcessEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": null
+  },
+  {
+    "tableName": "DeviceNetworkEvents",
+    "RequiredTPUs": 2.0,
+    "MBpd": 176536
+  },
+  {
+    "tableName": "DeviceFileEvents",
+    "RequiredTPUs": 3.0,
+    "MBpd": 260918
+  },
+  {
+    "tableName": "DeviceRegistryEvents",
+    "RequiredTPUs": 1.0,
+    "MBpd": 73802
+  },
+  {
+    "tableName": "DeviceLogonEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 7442
+  },
+  {
+    "tableName": "DeviceImageLoadEvents",
+    "RequiredTPUs": 1.0,
+    "MBpd": 52304
+  },
+  {
+    "tableName": "DeviceEvents",
+    "RequiredTPUs": 3.0,
+    "MBpd": 287648
+  },
+  {
+    "tableName": "DeviceFileCertificateInfo",
+    "RequiredTPUs": 0.0,
+    "MBpd": 11522
+  },
+  {
+    "tableName": "EmailAttachmentInfo",
+    "RequiredTPUs": 0.0,
+    "MBpd": 1872
+  },
+  {
+    "tableName": "EmailEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 2638
+  },
+  {
+    "tableName": "EmailPostDeliveryEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 0
+  },
+  {
+    "tableName": "EmailUrlInfo",
+    "RequiredTPUs": 0.0,
+    "MBpd": 1430
+  },
+  {
+    "tableName": "UrlClickEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 26
+  },
+  {
+    "tableName": "IdentityLogonEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 0
+  },
+  {
+    "tableName": "IdentityQueryEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 0
+  },
+  {
+    "tableName": "IdentityDirectoryEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 0
+  },
+  {
+    "tableName": "CloudAppEvents",
+    "RequiredTPUs": 0.0,
+    "MBpd": 4
+  }
+]

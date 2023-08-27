@@ -16,9 +16,27 @@ $ErrorActionPreference = "Stop" # Stop on all errors
 Set-StrictMode -Version Latest  # Stop on uninitialized variables
 
 $m365defenderSupportedTables = @(
+    "AlertInfo",
+    "AlertEvidence",
     "DeviceInfo",
+    "DeviceNetworkInfo",
+    "DeviceProcessEvents",
+    "DeviceNetworkEvents",
     "DeviceFileEvents",
-    "DeviceLogonEvents"
+    # "DeviceRegistryEvents",
+    # "DeviceLogonEvents",
+    # "DeviceImageLoadEvents",
+    # "DeviceEvents"
+    # "DeviceFileCertificateInfo",
+    # "EmailAttachmentInfo",
+    # "EmailEvents",
+    # "EmailPostDeliveryEvents",
+    # "EmailUrlInfo",
+    # "UrlClickEvents",
+    # "IdentityLogonEvents",
+    # "IdentityQueryEvents",
+    # "IdentityDirectoryEvents",
+    # "CloudAppEvents"
 )
 
 $tableStatisticsFile = "tableStatistics.json"
@@ -41,14 +59,14 @@ function Request-AdvancedHuntingAPI {
 
     # API retry settings
     $maxRetries     = 3
-    $retryDelay     = 5 # seconds
+    $retryDelay     = 1 # seconds
     $retryCount     = 0
 
     $errorObject    = $null
     # Query API and retry if timeout occurs
     while ($retryCount -lt $maxRetries) {
         try {
-            (Invoke-WebRequest -Method Post -Uri $url -Headers $headers -Body $body -ErrorAction Stop | ConvertFrom-Json).Results
+            (Invoke-WebRequest -Method Post -Uri $url -Headers $headers -Body $body -ErrorAction Continue | ConvertFrom-Json).Results
             $retryCount = $maxRetries
         } catch {
             $errorObject = (ConvertFrom-Json $_.ErrorDetails)
