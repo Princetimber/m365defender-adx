@@ -17,8 +17,8 @@ Set-StrictMode -Version Latest  # Stop on uninitialized variables
 
 $m365defenderSupportedTables = @(
     "DeviceInfo",
-    "DeviceEvents",
-    "DeviceFileEvents"
+    "DeviceFileEvents",
+    "DeviceLogonEvents"
 )
 
 $tableStatisticsFile = "tableStatistics.json"

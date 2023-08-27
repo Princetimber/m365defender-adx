@@ -1,4 +1,4 @@
-$appSecret = 
+
 
 
 
@@ -23,7 +23,6 @@ $appSecret =
     -subscriptionId "c2fa5885-0b00-4976-96d4-b4ea2fa9d578" `
     -resourceGroupName "rg-m365d-archive-01" `
     -saveAdxScript `
-    -noDeploy `
     -m365defenderTables "`
         DeviceInfo, `
         DeviceNetworkInfo, `
