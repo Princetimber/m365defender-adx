@@ -16,28 +16,21 @@
 @'
 
 
-
-let bytes_ = 500;
-union withsource = MDTables*
-| where Timestamp > startofday(ago(6h))
-| summarize count() by bin(Timestamp, 1m), MDTables
-| extend EPS = count_ / 60
-| summarize avg(EPS), estimatedMBPerSec = (avg(EPS) * bytes_ ) 
-			/ (1024 * 1024) by MDTables
+DeviceEvents
+| take 1
 
 
 let TimeFilter = "where Timestamp between (startofday(ago(1d)) .. endofday(ago(1d)))";
-DeviceFileEvents
-| getschema
-| summarize CalculateStringLengths = array_strcat(make_list(strcat("strlen(tostring(", ColumnName, "))")), " + ")
-| project strcat("DeviceFileEvents", " | ", TimeFilter, " | project totalLengthBytes = ", CalculateStringLengths, " | summarize totalThroughputMB = sum(totalLengthBytes) / (1024 * 1024) * 2")
+    DeviceEvents
+    | getschema
+    | summarize CalculateStringLengths = array_strcat(make_list(strcat("strlen(tostring(", ColumnName, "))")), " + ")
+    | project strcat("DeviceEvents", " | ", TimeFilter, " | project totalLengthBytes = ", CalculateStringLengths, " | summarize totalThroughputGB = sum(totalLengthBytes) / (1024 * 1024) * 2")
 
+
+| extend tpu = round(totalThroughputGB / 86400)
 
 
 '@
-
-
-
 
 
 ./CalculateTableSizing.ps1 `
